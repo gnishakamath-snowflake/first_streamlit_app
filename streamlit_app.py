@@ -21,6 +21,12 @@ def get_sf_FRUIT_LOAD_LIST():
   #my_data_row = my_cur.fetchone()
   my_cur.execute("SELECT * FROM PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST")
   return(my_cur.fetchall())  
+  
+def put_sf_FRUIT_LOAD_LIST(fv_val):
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  my_cur = my_cnx.cursor()
+  my_cur.execute("INSERT INTO PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST VALUES ('"+fv_val+"')")
+  return("Thanks for adding the fruit "+fv_val+" to the list!")  
 
 
 streamlit.title("My Mom's New Healthy Diner")
@@ -64,7 +70,8 @@ if streamlit.button('Get Fruit Load List'):
   fv_list = get_sf_FRUIT_LOAD_LIST()
   streamlit.dataframe(fv_list)
 
-streamlit.stop()
-add_my_fruit = streamlit.text_input('What fruit would you like to add?','jackfruit')
-streamlit.write('Thaks for adding ', add_my_fruit)
-my_cur.execute("INSERT INTO PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST VALUES ('From STREAM LIT')")
+#streamlit.stop()
+add_my_fruit = streamlit.text_input('What fruit would you like to add?')
+if streamlit.button('Add fruit to the List'):
+  fv_add = put_sf_FRUIT_LOAD_LIST(add_my_fruit)
+  streamlit.write('Thaks for adding ', fv_add)
