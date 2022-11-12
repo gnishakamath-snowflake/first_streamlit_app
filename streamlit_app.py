@@ -5,6 +5,7 @@ Comment
 import streamlit
 import pandas
 import requests
+import snowflake.connector
 
 streamlit.title("My Mom's New Healthy Diner")
 
