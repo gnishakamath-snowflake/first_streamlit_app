@@ -74,4 +74,4 @@ if streamlit.button('Get Fruit Load List'):
 add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 if streamlit.button('Add fruit to the List'):
   fv_add = put_sf_FRUIT_LOAD_LIST(add_my_fruit)
-  streamlit.write('Thaks for adding ', fv_add)
+  streamlit.text(fv_add)
