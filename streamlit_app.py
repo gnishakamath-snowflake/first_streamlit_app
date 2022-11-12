@@ -41,7 +41,9 @@ try:
     #streamlit.text(fruityvice_response.json()) #Just displays data in JSON 
     fruityvice_normalized = pandas.json_normalize(fruityvice_response.json()) # Takes JSON output and normaizes the same 
     streamlit.dataframe(fruityvice_normalized) # displays the data in tabular format
-
+except URLError as e:
+  streamlit.error()
+  
 streamlit.stop()
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
