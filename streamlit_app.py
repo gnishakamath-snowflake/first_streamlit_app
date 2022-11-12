@@ -26,7 +26,7 @@ def put_sf_FRUIT_LOAD_LIST(fv_val):
   my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
   my_cur = my_cnx.cursor()
   my_cur.execute("INSERT INTO PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST VALUES ('"+fv_val+"')")
-  return("Thanks for adding the fruit "+fv_val+" to the list!")  
+  return("Thanks for adding "+fv_val+" to the list!")  
 
 
 streamlit.title("My Mom's New Healthy Diner")
